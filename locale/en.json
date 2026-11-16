@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "title": "Manju Studio",
+    "description": "Turns a finished novel into a shot-by-shot AI short-drama plan. Seven manju_* tools create an episode workspace (13 stage folders), route you to the right prompt file for each stage, scan Chinese short-drama banned words by line, validate the 15-second storyboard format (timeline coverage, voice tags, transition block, closing state card), write and check character/scene/prop asset cards, and search your local voice-clone index. Text stages run in the session; image, video and dubbing stages return the exact app, the material to paste and where to save the result, because they need your own accounts. It reads your own prompt library and voice index and never uploads them; point libraryRoot, voicesRoot and projectsRoot in the plugin config at your folders."
+  }
+}

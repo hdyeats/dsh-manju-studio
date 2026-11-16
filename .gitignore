@@ -1,0 +1,17 @@
+node_modules/
+*.log
+.DS_Store
+Thumbs.db
+
+# 本地资料（体积大 / 含第三方内容），不入库
+library/voice-index.local.json
+01_提示词库/
+02_音色库/
+05_参考资料/
+06_项目/
+漫剧项目/
+*.mp3
+*.wav
+*.mkv
+*.zip
+*.docx

@@ -1,0 +1,11 @@
+# 漫剧工坊 / Manju Studio
+# 本机路径默认自动探测：cwd 与 cwd/AI漫剧工坊 下的 01_提示词库、02_音色库、06_项目。
+# 需要固定到别处时，取消下面注释并改成绝对路径。
+- insert:
+    - id: manju-studio
+      name: 'dsh-manju-studio'
+      config: {}
+      # config:
+      #   libraryRoot: F:\DSH\AI漫剧\AI漫剧工坊\01_提示词库
+      #   voicesRoot: F:\DSH\AI漫剧\AI漫剧工坊\02_音色库
+      #   projectsRoot: F:\DSH\AI漫剧\AI漫剧工坊\06_项目

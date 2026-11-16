@@ -1,0 +1,56 @@
+{
+  "name": "dsh-manju-studio",
+  "version": "0.1.0",
+  "description": "Manju Studio — an interactive AI short-drama pipeline plugin for DeepSeek Harness: episode workspaces, prompt routing, compliance scan, storyboard validation, asset cards and voice casting.",
+  "type": "module",
+  "main": "./index.js",
+  "exports": {
+    ".": "./index.js",
+    "./locale/*.json": "./locale/*.json",
+    "./icon": "./icon.svg"
+  },
+  "files": [
+    "index.js",
+    "lib",
+    "library",
+    "templates",
+    "locale/*.json",
+    "icon.svg",
+    "cordis.patch.yml",
+    "README.md",
+    "LICENSE"
+  ],
+  "dsh": {
+    "engines": {
+      "dsh": ">=0.1.2-rc.1"
+    },
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  },
+  "peerDependencies": {
+    "@deepseek-ai/dsh-tools": ">=0.1.2-rc.1"
+  },
+  "peerDependenciesMeta": {
+    "@deepseek-ai/dsh-tools": {
+      "optional": true
+    }
+  },
+  "scripts": {
+    "test": "node tests/plugin.test.js",
+    "test:runner": "node --test tests/",
+    "build:voices": "node scripts/build-voice-index.mjs",
+    "check:library": "node scripts/check-library.mjs"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "keywords": [
+    "dsh-plugin",
+    "deepseek-harness",
+    "ai-short-drama",
+    "storyboard",
+    "manju"
+  ],
+  "license": "MIT"
+}
