@@ -5,7 +5,7 @@ import path from 'node:path'
 import { after, describe, it } from 'node:test'
 import { fileURLToPath } from 'node:url'
 
-import { checkCardBody } from '../lib/cards.js'
+import { checkCardBody, writeCard } from '../lib/cards.js'
 import { scanCompliance } from '../lib/compliance.js'
 import { resolveFile } from '../lib/library.js'
 import { initProject, nextPending, projectStatus } from '../lib/projects.js'
@@ -127,6 +127,13 @@ describe('card rules', () => {
     assert.ok(result.errors.some((error) => error.includes('动态词')))
     assert.ok(result.errors.some((error) => error.includes('人物')))
   })
+
+  it('sanitizes path separators when writing a card file', () => {
+    const project = tmpDir('cardwrite')
+    const written = writeCard(project, 'character', { id: 'C01', name: '苏墨/少年', body: '整体形态：修长\n头部：丹凤眼' })
+    assert.ok(written.path.endsWith('C01_苏墨_少年.md'))
+    assert.ok(fs.existsSync(written.path))
+  })
 })
 
 describe('project scaffolding', () => {
@@ -142,6 +149,11 @@ describe('project scaffolding', () => {
     const note = fs.readFileSync(path.join(created.dir, '00_项目说明.md'), 'utf8')
     assert.ok(note.includes('无命人'))
     assert.ok(note.includes('EP02'))
+
+    // 目录名必须用本地日期，不能用 UTC（凌晨跑会差一天）
+    const now = new Date()
+    const stamp = `${now.getFullYear()}${String(now.getMonth() + 1).padStart(2, '0')}${String(now.getDate()).padStart(2, '0')}`
+    assert.ok(path.basename(created.dir).startsWith(stamp), `目录名应以 ${stamp} 开头`)
 
     const status = projectStatus(cfg, created.dir)
     assert.equal(status.styleLocked, false)
