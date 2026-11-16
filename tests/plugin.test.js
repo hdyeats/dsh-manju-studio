@@ -108,6 +108,15 @@ describe('storyboard check', () => {
     assert.ok(result.issues.some((issue) => issue.message.includes('音色')))
     assert.ok(result.issues.some((issue) => issue.message.includes('片段结尾状态卡')))
   })
+
+  it('counts a tolerance written with the greater-than sign', () => {
+    const block = storyboardBlock(1).replace(
+      '站位≤2%，动作连续≥95%，色温≤5%，道具≤2%，朝向≤10°',
+      '站位≤2%，动作连续度≥95%，色温≤5%，道具≤2%，朝向≤10°',
+    )
+    const result = checkStoryboard(block)
+    assert.ok(!result.issues.some((issue) => issue.message.includes('衔接容差')), '≥95% 也应计入 5 项容差')
+  })
 })
 
 describe('card rules', () => {
